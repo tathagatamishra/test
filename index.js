@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express');
 const mongoose = require('mongoose');
 const route = require('./Router/route');
@@ -8,7 +9,11 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-mongoose.connect('mongodb+srv://aashu:root@mini-project-cluster.kzrvbeg.mongodb.net/ATxt-Share?retryWrites=true&w=majority')
+
+
+const DB = process.env.DATABASE
+
+mongoose.connect(DB)
 .then(() => { console.log("MongoDB is Connected.....") })
 .catch ((error) => { console.log(error.message) })
 
